@@ -1,12 +1,16 @@
 package com.melabear.newcomposedemo;
 
+import javax.inject.Inject;
+
 public class Thermosiphon implements Pump {
     private final CoffeeLogger logger;
     private final Heater heater;
 
+    @Inject
     public Thermosiphon(CoffeeLogger logger, Heater heater) {
         this.logger = logger;
         this.heater = heater;
+        logger.log("+ + + Thermosiphon pump init + + +");
     }
 
     @Override

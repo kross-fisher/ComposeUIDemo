@@ -1,11 +1,15 @@
 package com.melabear.newcomposedemo;
 
+import javax.inject.Inject;
+
 public class ElectricHeater implements Heater {
     private final CoffeeLogger logger;
     private boolean heating;
 
+    @Inject
     public ElectricHeater(CoffeeLogger logger) {
         this.logger = logger;
+        logger.log("+ + + electric heater + + +");
     }
 
     @Override

@@ -3,11 +3,17 @@ package com.melabear.newcomposedemo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 //@Singleton
 public class CoffeeLogger {
     private final List<String> logs = new ArrayList<>();
 
-    public CoffeeLogger() {}
+    @Inject
+    public CoffeeLogger() {
+        CoffeeApp.print("Creating CoffeeLogger: " + this);
+    }
 
     public void log(String msg) {
         logs.add(msg);
