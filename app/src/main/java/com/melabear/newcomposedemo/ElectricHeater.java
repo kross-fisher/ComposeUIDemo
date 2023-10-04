@@ -10,6 +10,7 @@ public class ElectricHeater implements Heater {
     public ElectricHeater(CoffeeLogger logger) {
         this.logger = logger;
         logger.log("+ + + electric heater + + +");
+        //CoffeeApp.print("+ + + electric heater + + +", true);
     }
 
     @Override

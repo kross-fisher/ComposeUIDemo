@@ -1,5 +1,7 @@
 package com.melabear.newcomposedemo;
 
+import javax.inject.Singleton;
+
 import dagger.Binds;
 import dagger.Module;
 
@@ -10,5 +12,6 @@ public interface Heater {
 }
 
 @Module interface HeaterModule {
-    @Binds Heater bindHeater(ElectricHeater impl);
+    @Singleton
+    @Binds Heater xbindHeater(ElectricHeater impl);
 }

@@ -6,13 +6,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-//@Singleton
+@Singleton
 public class CoffeeLogger {
     private final List<String> logs = new ArrayList<>();
 
     @Inject
     public CoffeeLogger() {
-        CoffeeApp.print("Creating CoffeeLogger: " + this);
+        CoffeeApp.print("Creating CoffeeLogger: " + this/*, true*/);
     }
 
     public void log(String msg) {

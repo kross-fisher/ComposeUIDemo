@@ -11,6 +11,7 @@ public class Thermosiphon implements Pump {
         this.logger = logger;
         this.heater = heater;
         logger.log("+ + + Thermosiphon pump init + + +");
+        //CoffeeApp.print("+ + + Thermosiphon pump init + + +", true);
     }
 
     @Override

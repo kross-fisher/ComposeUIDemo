@@ -8,27 +8,33 @@ import dagger.Component;
 
 public class CoffeeApp {
     private static final String TAG = "CoffeeApp";
-
-    public static void legacyMakeCoffee() {
-        CoffeeLogger logger = new CoffeeLogger();
-        CoffeeShop shop = DaggerCoffeeShop.create();
-        Heater heater = shop.myHeater();
-        Pump pump = shop.providePump();
-        CoffeeMaker maker = new CoffeeMaker(logger, heater, pump);
-
-        maker.brew();
-        logger.logs().forEach(log -> Log.d(TAG, log));
+    private static CoffeeShop shop;
+    public static void makeCoffee() {
+        shop = DaggerCoffeeShop.create();
+        shop.maker().brew();
+        //shop.logger().logs().forEach(log -> Log.d(TAG, log));
+    }
+    public static CoffeeLogger getLogger() {
+        return shop != null ? shop.logger() : null;
     }
 
-    static void print(String msg) {
-        Log.d(TAG, "[feixy -- Logcat] ==> " + msg, new Exception());
+    static void print(String msg) { print(msg, false); }
+    static void print(String msg, boolean dumpTrace) {
+        if (dumpTrace) {
+            Log.d(TAG, "[feixy -- Logcat] ==> " + msg, new Exception());
+        } else {
+            Log.d(TAG, "[feixy -- Logcat] ==> " + msg);
+        }
     }
 }
 
+@Singleton
 @Component(modules = {
         HeaterModule.class, PumpModule.class
-}) //@Singleton
+})
 interface CoffeeShop {
     Pump providePump();
-    Heater myHeater();
+    Heater createHeater();
+    CoffeeLogger logger();
+    CoffeeMaker maker();
 }

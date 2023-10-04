@@ -9,5 +9,5 @@ public interface Pump {
 
 @Module
 abstract class PumpModule {
-    @Binds abstract Pump providePump(Thermosiphon pump);
+    @Binds abstract Pump thermoPump(Thermosiphon pump);
 }
